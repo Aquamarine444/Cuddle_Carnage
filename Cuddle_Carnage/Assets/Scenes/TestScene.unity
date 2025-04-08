@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 348947088}
   m_Layer: 0
   m_Name: TriggerField
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 1047152970}
   m_Layer: 0
   m_Name: TriggerField
-  m_TagString: Untagged
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
