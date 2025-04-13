@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,6 +9,23 @@ public class PlayerMovement : MonoBehaviour
     public InputActionAsset PlayerAction;
     private InputAction moveAction;
     private Vector2 moveInput;
+
+    [Header("NPC Interactions:")]
+    public GameObject PopupText;
+    public bool NPCTrigger;
+    public GameObject NPCPanel;
+
+    private void FixedUpdate()
+    {
+        if (NPCTrigger)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                NPCPanel.SetActive(true);
+                Time.timeScale = 0.0f;
+            }
+        }
+    }
 
     private void OnEnable()
     {
@@ -49,5 +67,23 @@ public class PlayerMovement : MonoBehaviour
         // Apply movement based on input
         Vector2 movement = new Vector2(moveInput.x, moveInput.y) * Speed * Time.deltaTime;
         transform.Translate(movement);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("NPC"))
+        {
+            PopupText.SetActive(true);
+            NPCTrigger = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("NPC"))
+        {
+            PopupText.SetActive(false);
+            NPCTrigger = false;
+        }
     }
 }
