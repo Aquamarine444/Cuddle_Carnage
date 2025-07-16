@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Collectable
   - NPC
+  - Food
+  - DeadNPC
   layers:
   - Default
   - TransparentFX
