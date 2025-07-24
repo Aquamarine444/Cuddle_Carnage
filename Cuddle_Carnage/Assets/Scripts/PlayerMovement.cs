@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using TMPro;
 using Unity.VisualScripting;
@@ -28,10 +29,21 @@ public class PlayerMovement : MonoBehaviour
     public bool IsMoving = false;
 
     public bool IsFood = false;
-    public GameObject Food;
 
     public GameObject TesterScreen;
     public GameObject MadTesterScreen;
+
+    [Header("Player Inventory: ")]
+    public List<string> Inventory = new List<string>();
+
+    CollectibleScript Collectible;
+
+    public bool IsCollectible = false;
+
+    private void Start()
+    {
+
+    }
 
     private void FixedUpdate()
     {
@@ -113,20 +125,31 @@ public class PlayerMovement : MonoBehaviour
             TimerStart = false;
         }
 
-        if (IsFood)
+        if (IsFood && Collectible.PlayerNear)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 if (HealthSanityBar.fillAmount != 1.0f)
                 {
-                    Food.SetActive(false);
+                    Collectible.Collected();
                     HealthSanityBar.fillAmount += 0.5f;
                     Timer = 15f;
                 }
                 else
                 {
-                    //replace with script to allow option to place food in inventory
-                    Debug.Log("Can't eat now");
+                    //Debug.Log("Can't eat now");
+                    // Inventory Check
+                    if (Inventory.Count == 2) 
+                    {
+                        Debug.Log("Hands are full");
+                    }
+                    else
+                    {
+                        //Add to Inventory
+                        Inventory.Add(Collectible.ObjectName);
+                        Collectible.Collected();
+                    }
+
                 }
             }
         }
@@ -171,6 +194,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.CompareTag("Food"))
         {
+            Collectible = collision.gameObject.GetComponent<CollectibleScript>();
             IsFood = true;
         }
     }
