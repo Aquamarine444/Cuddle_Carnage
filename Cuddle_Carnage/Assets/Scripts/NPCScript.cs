@@ -2,15 +2,32 @@ using UnityEngine;
 
 public class NPCScript : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public bool PlayerNear;
+    public GameObject DialoguePanel;
+
+    private void Update()
     {
-        
+        if (PlayerNear)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                DialoguePanel.SetActive(true);
+            }
+        }    
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            PlayerNear = true;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        if (collision.CompareTag("Player"))
+        {
+            PlayerNear = false;
+        }
     }
 }
