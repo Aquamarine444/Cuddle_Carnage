@@ -13,14 +13,14 @@ public class PlayerMovement : MonoBehaviour
     private InputAction moveAction;
     private Vector2 moveInput;
 
-    [Header("NPC Interactions:")]
+    /*[Header("NPC Interactions:")]
     public GameObject PopupText;
     public bool NPCTrigger;
     public GameObject NPCPanel;
 
     public GameObject TesterNPC;
     public GameObject TesterFoodNPC;
-    public GameObject TesterFluffNPC; //add onto NPC script?
+    public GameObject TesterFluffNPC; //add onto NPC script?*/
 
     [Header("Player Hunger: ")]
     public bool TimerStart;
@@ -47,14 +47,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (NPCTrigger)
+        /*if (NPCTrigger)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
                 NPCPanel.SetActive(true);
                 Time.timeScale = 0.0f;
             }
-        }
+        }*/
     }
 
     private void OnEnable()
@@ -169,8 +169,8 @@ public class PlayerMovement : MonoBehaviour
 
             Timer = 30f;
 
-            TesterNPC.SetActive(false);
-            TesterFoodNPC.SetActive(true); 
+            /*TesterNPC.SetActive(false);
+            TesterFoodNPC.SetActive(true); */
         }
         else if (HealthSanityBar.fillAmount >= 0.17f)
         {
@@ -180,17 +180,17 @@ public class PlayerMovement : MonoBehaviour
             }
             MadTesterScreen.SetActive(false);
             //TesterFluffNPC.SetActive(true); --- Causes error when loading the game
-            TesterFoodNPC.SetActive(false);
+            //TesterFoodNPC.SetActive(false);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("NPC"))
+        /*if (collision.CompareTag("NPC"))
         {
             PopupText.SetActive(true);
             NPCTrigger = true;
-        }
+        }*/
 
         if (collision.CompareTag("Food"))
         {
@@ -201,11 +201,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("NPC"))
+        /*if (collision.CompareTag("NPC"))
         {
             PopupText.SetActive(false);
             NPCTrigger = false;
-        }
+        }*/
 
         if (collision.CompareTag("Food"))
         {

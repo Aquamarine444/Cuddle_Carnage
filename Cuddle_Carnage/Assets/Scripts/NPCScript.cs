@@ -5,6 +5,9 @@ public class NPCScript : MonoBehaviour
     public bool PlayerNear;
     public GameObject DialoguePanel;
 
+    public GameObject Food;
+    public GameObject Fluff;
+
     private void Update()
     {
         if (PlayerNear)
@@ -12,6 +15,7 @@ public class NPCScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 DialoguePanel.SetActive(true);
+                Time.timeScale = 0.0f;
             }
         }    
     }
