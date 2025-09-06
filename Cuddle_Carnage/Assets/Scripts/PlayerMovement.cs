@@ -22,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
     public GameObject TesterFoodNPC;
     public GameObject TesterFluffNPC; //add onto NPC script?*/
 
+    [Header("Player Animations:")]
+    public Animator Anim;
+    public SpriteRenderer SpriteRender;
+
     [Header("Player Hunger: ")]
     public bool TimerStart;
     public float Timer;
@@ -42,7 +46,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        if (Anim == null)
+        {
+            Anim = GetComponent<Animator>();
+        }
 
+        SpriteRender = GetComponent<SpriteRenderer>();      
     }
 
     private void FixedUpdate()
@@ -101,6 +110,23 @@ public class PlayerMovement : MonoBehaviour
         // Apply movement based on input
         Vector2 movement = new Vector2(moveInput.x, moveInput.y) * Speed * Time.deltaTime;
         transform.Translate(movement);
+
+        Vector2 movementDirection = movement.normalized;
+
+        if (movementDirection.x > 0.1f)
+        {
+            SpriteRender.flipX = false;
+            Anim.SetBool("SideWalk", true);
+        }
+        else if (movementDirection.x < -0.1f)
+        {
+            SpriteRender.flipX = true;
+            Anim.SetBool("SideWalk", true);
+        }
+        else
+        {
+            Anim.SetBool("SideWalk", false);
+        }
 
         if (IsMoving)
         {
