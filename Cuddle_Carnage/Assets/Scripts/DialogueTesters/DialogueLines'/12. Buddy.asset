@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c9388786e060247b66d65ff980bad6, type: 3}
+  m_Name: 12. Buddy
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Dialogue: That's great!
+  - Dialogue: Now I can stay and take a nap, while you go and explore the cave!
+  - Dialogue: The cave is in the top right area of the Herbivore Plains (you know
+      the place with all the dark green grass)

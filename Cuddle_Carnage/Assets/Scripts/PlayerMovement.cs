@@ -12,15 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public InputActionAsset PlayerAction;
     private InputAction moveAction;
     private Vector2 moveInput;
-
-    /*[Header("NPC Interactions:")]
-    public GameObject PopupText;
     public bool NPCTrigger;
-    public GameObject NPCPanel;
-
-    public GameObject TesterNPC;
-    public GameObject TesterFoodNPC;
-    public GameObject TesterFluffNPC; //add onto NPC script?*/
 
     [Header("Player Animations:")]
     public Animator Anim;
@@ -212,11 +204,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*if (collision.CompareTag("NPC"))
+        if (collision.CompareTag("NPC"))
         {
-            PopupText.SetActive(true);
             NPCTrigger = true;
-        }*/
+        }
 
         if (collision.CompareTag("Food"))
         {
@@ -227,11 +218,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        /*if (collision.CompareTag("NPC"))
+        if (collision.CompareTag("NPC"))
         {
-            PopupText.SetActive(false);
             NPCTrigger = false;
-        }*/
+        }
 
         if (collision.CompareTag("Food"))
         {

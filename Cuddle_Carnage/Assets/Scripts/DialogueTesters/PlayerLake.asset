@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c9388786e060247b66d65ff980bad6, type: 3}
+  m_Name: PlayerLake
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Dialogue: It is so beautiful here...
+  - Dialogue: So quiet...
+  - Dialogue: And lonely..
+  - Dialogue: So so lonely...
+  - Dialogue: No one is here with me...
+  - Dialogue: If I don't come back home, will anyone know to look here for me?
+  - Dialogue: Will anyone care enough to look for me?
+  - Dialogue: What if I deserve to be alone forever?
+  - Dialogue: Would anyone care if I dissapeared?
+  - Dialogue: ...
+  - Dialogue: ...
+  - Dialogue: No, Buddy knows that I am here.
+  - Dialogue: 'He will look for me. '
+  - Dialogue: I know it!
+  - Dialogue: We are best friends!
+  - Dialogue: aren't we?
+  - Dialogue: ...
+  - Dialogue: I don't want to be here anymore
+  - Dialogue: I want to go back home...

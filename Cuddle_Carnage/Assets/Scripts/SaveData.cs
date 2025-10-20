@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -5,4 +6,6 @@ public class SaveData
 {
     public Vector3 PlayerPosition;
     public string mapboundary;
+    public List<InventorySaveData> inventorySaveData;
+    public List<InventorySaveData> hotbarSaveData;
 }
