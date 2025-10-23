@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -9,4 +10,6 @@ public class Item : MonoBehaviour
     {
         Debug.Log("Using item" + Name);
     }
+
+    
 }

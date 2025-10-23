@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -21,11 +22,14 @@ public class SaveController : MonoBehaviour
     public void SaveGame()
     {
         SaveData saveData = new SaveData();
-        
-        saveData.PlayerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
-        saveData.mapboundary = FindObjectOfType<CinemachineConfiner2D>().BoundingShape2D.name;
-        saveData.inventorySaveData = inventoryController.GetInventoryItems();
-        //saveData.hotbarSaveData = hotbarController.GetHotbarItems();
+        {
+            saveData.PlayerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+            saveData.mapboundary = FindObjectOfType<CinemachineConfiner2D>().BoundingShape2D.name;
+            saveData.inventorySaveData = inventoryController.GetInventoryItems();
+            //saveData.hotbarSaveData = hotbarController.GetHotbarItems();
+
+            saveData.handinQuestIDs = QuestController4.Instance.handinQuestIDs;
+        }
 
         File.WriteAllText(SaveLocation, JsonUtility.ToJson(saveData));
     }
@@ -44,10 +48,15 @@ public class SaveController : MonoBehaviour
             inventoryController.SetInventoryItems(saveData.inventorySaveData);
             //hotbarController.SetHotbarItems(saveData.hotbarSaveData);
 
+            QuestController4.Instance.handinQuestIDs = saveData.handinQuestIDs;
+
         }
         else
         {
             SaveGame();
+
+            inventoryController.SetInventoryItems(new List<InventorySaveData>());
+            hotbarController.SetHotbarItems(new List<InventorySaveData>()); 
         }
     }
 }

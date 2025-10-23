@@ -33,7 +33,7 @@ public class QuestUI : MonoBehaviour
         }
 
         //Build quest entries
-        foreach (var quest in testQuestProgressList)
+        foreach (var quest in QuestController4.Instance.activateQuests)
         {
             GameObject entry = Instantiate(QuestEntryPrefab, questListContent);
             TMP_Text questNameText = entry.transform.Find("txt_QuestName").GetComponent<TMP_Text>();

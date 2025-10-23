@@ -8,6 +8,8 @@ public class NPCScript : MonoBehaviour
     public GameObject Food;
     public GameObject Fluff;
 
+    public QuestManager dialogueData;
+
     private void Update()
     {
         if (PlayerNear)
@@ -34,4 +36,24 @@ public class NPCScript : MonoBehaviour
             PlayerNear = false;
         }
     }
+
+   /* private void SyncQuestState()
+    {
+        if (dialogueData.quest == null) return;
+
+        string questID = dialogueData.quest.QuestID;
+        
+        if (QuestController4.Instance.IsQuestCompleted(questID) || QuestController4.Instance.IsQuestHandedIn(questID))
+        {
+            questState = QuestState.Completed;
+        }
+        else if (QuestController4.Instance.IsQuestActive(questID))
+        {
+            questState = QuestState.InProgress;
+        }
+        else
+        {
+            questState = QuestState.NotStarted;
+        }
+    }*/
 }

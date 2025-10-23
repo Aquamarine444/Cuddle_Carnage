@@ -3,20 +3,27 @@ using UnityEngine;
 public class PlayerItemCollector : MonoBehaviour
 {
     private InventoryController inventoryController;
+    public bool PickupItem;
 
+    CollectibleScript Collectible;
 
     private void Start()
     {
         inventoryController = FindObjectOfType<InventoryController>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {    
         if (collision.CompareTag("Collectable"))
         {
             Item item = collision.GetComponent<Item>();
 
-            if (item  != null)
+            if (item != null)
             {
                 //Add item to inventory
                 bool itemAdded = inventoryController.AddItem(collision.gameObject);
@@ -29,5 +36,10 @@ public class PlayerItemCollector : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+              
     }
 }

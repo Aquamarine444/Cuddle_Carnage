@@ -1,13 +1,22 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     Transform OGParent;
     CanvasGroup canvasGroup;
+
+    [Header("Consumed")]
+    public PlayerMovement PlayerManagement;
+    private CollectibleScript Collectible;
+    public GameObject EdibleInfo;
+    public GameObject CollectableInfo;
+
     private void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        Collectible =GetComponent<CollectibleScript>();
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -66,4 +75,46 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
         GetComponent<RectTransform>().anchoredPosition = Vector2.zero; //centres object
     }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            if (Collectible.Edible)
+            {
+                if (PlayerManagement.HealthSanityBar.fillAmount != 1.0f)
+                {
+                    Collectible.Eaten();
+                    PlayerManagement.HealthSanityBar.fillAmount += 0.5f;
+                    PlayerManagement.Timer = 15f;
+                }
+
+            }
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (Collectible.Edible)
+        {
+            EdibleInfo.SetActive(true);
+        }
+        else
+        {
+            CollectableInfo.SetActive(true);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (Collectible.Edible)
+        {
+            EdibleInfo.SetActive(false);
+        }
+        else
+        {
+            CollectableInfo.SetActive(false);
+        }
+    }
+
 }

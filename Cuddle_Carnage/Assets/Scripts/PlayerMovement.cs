@@ -143,21 +143,24 @@ public class PlayerMovement : MonoBehaviour
             TimerStart = false;
         }
 
-        if (IsFood && Collectible.PlayerNear)
+        if (Collectible.PlayerNear)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && Collectible.Edible)
             {
                 if (HealthSanityBar.fillAmount != 1.0f)
                 {
-                    Collectible.Collected();
+                    Collectible.Eaten();
                     HealthSanityBar.fillAmount += 0.5f;
                     Timer = 15f;
-                }
-                else
+                }                       
+            }
+
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
                 {
-                    //Debug.Log("Can't eat now");
                     // Inventory Check
-                    if (Inventory.Count == 2) 
+                    if (Inventory.Count == 2)
                     {
                         Debug.Log("Hands are full");
                     }
@@ -165,7 +168,8 @@ public class PlayerMovement : MonoBehaviour
                     {
                         //Add to Inventory
                         Inventory.Add(Collectible.ObjectName);
-                        Collectible.Collected();
+                      // Collectible.Eaten();*/
+                        Collectible.CollectItem();
                     }
 
                 }
@@ -209,7 +213,7 @@ public class PlayerMovement : MonoBehaviour
             NPCTrigger = true;
         }
 
-        if (collision.CompareTag("Food"))
+        if (collision.CompareTag("Collectable"))
         {
             Collectible = collision.gameObject.GetComponent<CollectibleScript>();
             IsFood = true;
@@ -223,7 +227,7 @@ public class PlayerMovement : MonoBehaviour
             NPCTrigger = false;
         }
 
-        if (collision.CompareTag("Food"))
+        if (collision.CompareTag("Collectable"))
         {
             IsFood = false;
         }

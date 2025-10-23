@@ -8,4 +8,6 @@ public class SaveData
     public string mapboundary;
     public List<InventorySaveData> inventorySaveData;
     public List<InventorySaveData> hotbarSaveData;
+
+    public List<string> handinQuestIDs;
 }

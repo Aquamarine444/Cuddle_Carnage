@@ -8,6 +8,16 @@ public class CollectibleScript : MonoBehaviour
     public string ObjectName;
     public GameObject Item;
 
+    public bool Collectable;
+    public bool Edible;
+
+    private InventoryController inventoryController;
+
+    private void Start()
+    {
+        inventoryController = FindObjectOfType<InventoryController>();
+    }
+
     private void Update()
     {
 
@@ -29,8 +39,31 @@ public class CollectibleScript : MonoBehaviour
         }
     }
 
-    public void Collected()
+    public void Eaten()
     {
-        Destroy(Item);
+        Destroy(this.gameObject);
+    }
+
+    public void CollectItem()
+    {
+        if (PlayerNear)
+        {
+            //Item item = GetComponent<Item>();
+
+            /*if (item != null)
+            {
+               
+            }*/
+
+            //Add item to inventory
+            bool itemAdded = inventoryController.AddItem(this.gameObject);
+
+            if (itemAdded)
+            {
+                {
+                    Destroy(this.gameObject);
+                }
+            }
+        }
     }
 }
