@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,6 +13,8 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private CollectibleScript Collectible;
     public GameObject EdibleInfo;
     public GameObject CollectableInfo;
+    public TMP_Text CollectibleInfoText;
+    public string Info;
 
     private void Start()
     {
@@ -56,7 +59,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 //Swaps slot items
                 DropSlot.currentItem.transform.SetParent(OGSlot.transform);
                 OGSlot.currentItem = DropSlot.currentItem;
-                DropSlot.currentItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                DropSlot.currentItem.GetComponent<RectTransform>().anchoredPosition = new Vector2(-50,-50);
             }
             else
             {
@@ -73,7 +76,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             transform.SetParent(OGParent);
         }
 
-        GetComponent<RectTransform>().anchoredPosition = Vector2.zero; //centres object
+        GetComponent<RectTransform>().anchoredPosition = new Vector2(-50,-50); //centres object Was Vector2.zero
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -86,8 +89,11 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 {
                     Collectible.Eaten();
                     PlayerManagement.HealthSanityBar.fillAmount += 0.5f;
-                    PlayerManagement.Timer = 15f;
+                    PlayerManagement.Timer = 25f;
                 }
+
+                PlayerManagement.Inventory.RemoveAt(0);
+                EdibleInfo.SetActive(false);
 
             }
         }
@@ -98,9 +104,12 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (Collectible.Edible)
         {
             EdibleInfo.SetActive(true);
+            CollectibleInfoText.text = Info;
+            CollectableInfo.SetActive(true);
         }
-        else
+        else if (Collectible.Collectable)
         {
+            CollectibleInfoText.text = Info;
             CollectableInfo.SetActive(true);
         }
     }
@@ -110,8 +119,9 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (Collectible.Edible)
         {
             EdibleInfo.SetActive(false);
+            CollectableInfo.SetActive(false);
         }
-        else
+        else if (Collectible.Collectable)
         {
             CollectableInfo.SetActive(false);
         }

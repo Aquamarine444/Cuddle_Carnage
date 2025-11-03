@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CollectibleScript : MonoBehaviour
@@ -10,6 +11,12 @@ public class CollectibleScript : MonoBehaviour
 
     public bool Collectable;
     public bool Edible;
+
+    public GameObject EKeyInfo;
+    public GameObject FKeyInfo;
+
+    public TMP_Text InfoFText;
+    public TMP_Text InfoEText;
 
     private InventoryController inventoryController;
 
@@ -28,6 +35,21 @@ public class CollectibleScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             PlayerNear = true;
+
+            if (Collectable)
+            {
+                FKeyInfo.SetActive(true);
+                InfoFText.text = "F to Pickup";
+            }
+
+            if (Edible)
+            {
+                FKeyInfo.SetActive(true);
+                InfoFText.text = "F to Pickup";
+
+                EKeyInfo.SetActive(true);
+                InfoEText.text = "E to Eat";
+            }
         }
     }
 
@@ -36,6 +58,18 @@ public class CollectibleScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             PlayerNear = false;
+
+            if (Collectable)
+            {
+                FKeyInfo.SetActive(false);
+            }
+
+            if (Edible)
+            {
+                FKeyInfo.SetActive(false);
+
+                EKeyInfo.SetActive(false);
+            }
         }
     }
 

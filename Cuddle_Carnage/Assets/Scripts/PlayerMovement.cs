@@ -29,12 +29,19 @@ public class PlayerMovement : MonoBehaviour
     public GameObject TesterScreen;
     public GameObject MadTesterScreen;
 
+    public GameManagerScripts GameManager;
+    private NPCFoodScript NPCFood;
+
     [Header("Player Inventory: ")]
     public List<string> Inventory = new List<string>();
 
     CollectibleScript Collectible;
 
     public bool IsCollectible = false;
+
+    public int InventoryCount = 2;
+
+    public GameObject InfoPanel;
 
     private void Start()
     {
@@ -43,20 +50,14 @@ public class PlayerMovement : MonoBehaviour
             Anim = GetComponent<Animator>();
         }
 
-        SpriteRender = GetComponent<SpriteRenderer>();      
+        SpriteRender = GetComponent<SpriteRenderer>();
+
+        GameManager.SanityHigh = true;
+        GameManager.SanityLow = false;
+
+        Cursor.visible = false;
     }
 
-    private void FixedUpdate()
-    {
-        /*if (NPCTrigger)
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                NPCPanel.SetActive(true);
-                Time.timeScale = 0.0f;
-            }
-        }*/
-    }
 
     private void OnEnable()
     {
@@ -132,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
                 else if (Timer <= 0)
                 {
                     HealthSanityBar.fillAmount = HealthSanityBar.fillAmount - 0.17f;
-                    Timer = 15f;
+                    Timer = 45f;
                     TimerStart = false;
                 }
             }
@@ -143,38 +144,7 @@ public class PlayerMovement : MonoBehaviour
             TimerStart = false;
         }
 
-        if (Collectible.PlayerNear)
-        {
-            if (Input.GetKeyDown(KeyCode.E) && Collectible.Edible)
-            {
-                if (HealthSanityBar.fillAmount != 1.0f)
-                {
-                    Collectible.Eaten();
-                    HealthSanityBar.fillAmount += 0.5f;
-                    Timer = 15f;
-                }                       
-            }
 
-
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                {
-                    // Inventory Check
-                    if (Inventory.Count == 2)
-                    {
-                        Debug.Log("Hands are full");
-                    }
-                    else
-                    {
-                        //Add to Inventory
-                        Inventory.Add(Collectible.ObjectName);
-                      // Collectible.Eaten();*/
-                        Collectible.CollectItem();
-                    }
-
-                }
-            }
-        }
 
         if (HealthSanityBar.fillAmount <= 0.5f)
         {
@@ -189,10 +159,11 @@ public class PlayerMovement : MonoBehaviour
         {
             MadTesterScreen.SetActive(true);
 
-            Timer = 30f;
+            Timer = 60f;
 
-            /*TesterNPC.SetActive(false);
-            TesterFoodNPC.SetActive(true); */
+            GameManager.SanityLow = true;
+            GameManager.SanityHigh = false;
+
         }
         else if (HealthSanityBar.fillAmount >= 0.17f)
         {
@@ -201,9 +172,67 @@ public class PlayerMovement : MonoBehaviour
                 TesterScreen.SetActive(false);
             }
             MadTesterScreen.SetActive(false);
-            //TesterFluffNPC.SetActive(true); --- Causes error when loading the game
-            //TesterFoodNPC.SetActive(false);
+            GameManager.SanityLow = false;
+            GameManager.SanityHigh = true;
+
         }
+
+        
+        if (NPCFood != null)
+        {
+            if (NPCFood.PlayerNear)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (HealthSanityBar.fillAmount != 1.0f)
+                    {
+                        NPCFood.Eaten();
+                        HealthSanityBar.fillAmount += 0.5f;
+                        Timer = 15f;
+                    }
+                }
+            }
+
+        }
+
+        if (Collectible != null)
+        {
+            if (Collectible.PlayerNear)
+            {
+                if (Input.GetKeyDown(KeyCode.E) && Collectible.Edible)
+                {
+                    if (HealthSanityBar.fillAmount != 1.0f)
+                    {
+                        Collectible.Eaten();
+                        HealthSanityBar.fillAmount += 0.5f;
+                        Timer = 15f;
+                    }
+                }
+
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    {
+                        // Inventory Check
+                        if (Inventory.Count == InventoryCount)
+                        {
+                            InfoPanel.SetActive(true);
+                            Cursor.visible = true;
+                            Debug.Log("Hands are full");
+                        }
+                        else
+                        {
+                            //Add to Inventory
+                            Inventory.Add(Collectible.ObjectName);
+                            // Collectible.Eaten();*/
+                            Collectible.CollectItem();
+                        }
+
+                    }
+                }
+            }
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -217,6 +246,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Collectible = collision.gameObject.GetComponent<CollectibleScript>();
             IsFood = true;
+            NPCFood = collision.gameObject.GetComponent<NPCFoodScript>();
         }
     }
 

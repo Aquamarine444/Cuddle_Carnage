@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c9388786e060247b66d65ff980bad6, type: 3}
+  m_Name: 1. Tabby
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Dialogue: First, you take the leaves of the stem...
+  - Dialogue: Then you braid the second flower stem around the first...
+  - Dialogue: And continue adding 'til you have a chain that can wrap around your
+      head..
+  - Dialogue: And finally you braid the final flower back into the first flower to
+      make a crown...
+  - Dialogue: And ta-da!
+  - Dialogue: You have a pretty flower crown!

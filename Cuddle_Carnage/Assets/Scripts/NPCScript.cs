@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class NPCScript : MonoBehaviour
@@ -8,7 +9,11 @@ public class NPCScript : MonoBehaviour
     public GameObject Food;
     public GameObject Fluff;
 
-    public QuestManager dialogueData;
+    //public QuestManager dialogueData;
+
+    public GameObject Info;
+    public TMP_Text InfoText;
+
 
     private void Update()
     {
@@ -18,6 +23,8 @@ public class NPCScript : MonoBehaviour
             {
                 DialoguePanel.SetActive(true);
                 Time.timeScale = 0.0f;
+                Cursor.visible = true;
+                Info.SetActive(false);
             }
         }    
     }
@@ -26,6 +33,8 @@ public class NPCScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             PlayerNear = true;
+            Info.SetActive(true);
+            InfoText.text = "F to talk";
         }
     }
 
@@ -34,6 +43,7 @@ public class NPCScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             PlayerNear = false;
+            Info.SetActive(false);
         }
     }
 

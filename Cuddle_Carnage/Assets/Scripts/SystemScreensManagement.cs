@@ -5,6 +5,7 @@ public class SystemScreensManagement : MonoBehaviour
 {
     public string SceneName;
     public GameObject InventoryPanel;
+
     public void StartGame()
     {
         SceneManager.LoadScene(SceneName);
@@ -22,6 +23,7 @@ public class SystemScreensManagement : MonoBehaviour
         {
             InventoryPanel.SetActive(true);
             Time.timeScale = 0f;
+            Cursor.visible = true;
         }
     }
 
@@ -29,5 +31,6 @@ public class SystemScreensManagement : MonoBehaviour
     {
         InventoryPanel.SetActive(false);
         Time.timeScale = 1.0f;
+        Cursor.visible = false;
     }
 }
