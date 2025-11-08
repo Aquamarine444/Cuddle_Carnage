@@ -418,8 +418,8 @@ public class SheriffDialogueManager : MonoBehaviour
 
         Sheriff.SetActive(true);
 
-        SheriffAvatar.transform.position = new Vector2(-6.92f, -31.36f);
-        SheriffFluff.transform.position = new Vector2(-6.92f, -31.36f);
+        SheriffAvatar.transform.position = new Vector2(-3.58f, -41.14f);
+        SheriffFluff.transform.position = new Vector2(-3.58f, -41.14f);
     }
 
     public void DisplayDialogue1(DialogueAsset dialogue) //1

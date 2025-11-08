@@ -70,6 +70,8 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject Sheriff;
 
+    public AudioSource QuestCompleteSFX;
+
 
     IEnumerator MoveThroughDialogue1(DialogueAsset dialogue) //1
     {
@@ -637,6 +639,9 @@ public class DialogueManager : MonoBehaviour
 
         Cursor.visible = false;
         GameManager.BuddyQuest = true;
+        GameManager.QuestCounter += 1;
+
+        QuestCompleteSFX.Play();
     }
 
     public void DisplayDialogue21(DialogueAsset dialogue) //21

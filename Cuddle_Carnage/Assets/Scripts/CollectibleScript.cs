@@ -20,6 +20,9 @@ public class CollectibleScript : MonoBehaviour
 
     private InventoryController inventoryController;
 
+    public AudioSource Pickup;
+    public AudioSource Eat;
+
     private void Start()
     {
         inventoryController = FindObjectOfType<InventoryController>();
@@ -76,6 +79,8 @@ public class CollectibleScript : MonoBehaviour
     public void Eaten()
     {
         Destroy(this.gameObject);
+        Eat.Play();
+
     }
 
     public void CollectItem()
@@ -96,6 +101,7 @@ public class CollectibleScript : MonoBehaviour
             {
                 {
                     Destroy(this.gameObject);
+                    Pickup.Play();
                 }
             }
         }

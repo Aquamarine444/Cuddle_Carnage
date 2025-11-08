@@ -18,6 +18,8 @@ public class QuestManager : MonoBehaviour
     public LakeSideScript QuestScript;
     public PlayerMovement Player;
 
+    public TMP_Text QuestText;
+
     private enum QuestState { NotStarted, InProgress, Completed }
     private QuestState questState = QuestState.NotStarted;
 
@@ -115,6 +117,9 @@ public class QuestManager : MonoBehaviour
         PlayerName.SetActive(false);
         DialoguePanel.SetActive(false);
         Time.timeScale = 1.0f;
+        Cursor.visible = false;
+
+        QuestText.text = "Enter and Explore the Cave of Terrible Terrors";
     }
 
     public void DisplayDialogueMid(DialogueAsset dialogue) //Mid Quest

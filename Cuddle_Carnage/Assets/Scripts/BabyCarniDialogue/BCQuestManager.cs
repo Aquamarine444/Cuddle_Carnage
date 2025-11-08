@@ -19,6 +19,8 @@ public class BCQuestManager : MonoBehaviour
 
     public BCEndScript QuestEnd;
 
+    public TMP_Text QuestText;
+
     private enum QuestState { NotStarted, InProgress, Completed }
     private QuestState questState = QuestState.NotStarted;
 
@@ -347,8 +349,8 @@ public class BCQuestManager : MonoBehaviour
             Info.SetActive(false);
             DialoguePanel.SetActive(false);
             Cursor.visible = false;
-        
 
+        QuestText.text = "Take Baby Carni back to Carnivore Village";
     }
 
     public void DisplayDialogueMid(DialogueAsset dialogue) //Mid

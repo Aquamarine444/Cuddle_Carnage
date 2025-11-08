@@ -20,6 +20,11 @@ public class PheobeDialogueManager : MonoBehaviour
     public GameObject Player;
     public GameObject PlayerName;
 
+    public GameObject Tabby;
+    public GameObject BabyC;
+    public GameObject BabyCFluff;
+    public SpriteRenderer BabyCSprite;
+
     [Header("Dialogue Asset: ")]
     public DialogueAsset Pheobe1; //1
     public DialogueAsset Player1; //2
@@ -72,6 +77,7 @@ public class PheobeDialogueManager : MonoBehaviour
     public Button QuestButton;
 
     public GameObject Food;
+    public AudioSource QuestCompleteSFX;
 
 
     /////////////////////////Start Quest/////////////////////
@@ -571,6 +577,7 @@ public class PheobeDialogueManager : MonoBehaviour
 
         DialoguePanel.SetActive(false);
         QuestStarted = true;
+        Cursor.visible = false;
     }
 
     public void DisplayDialogue1(DialogueAsset dialogue) //1
@@ -965,7 +972,16 @@ public class PheobeDialogueManager : MonoBehaviour
         Time.timeScale = 1.0f;
 
         Food.SetActive(true);
-        
+
+        Tabby.SetActive(true);
+        BabyC.transform.position = new Vector2(112.77f, -11.78f);
+        BabyCFluff.transform.position = new Vector2(112.77f, -11.78f);
+        BabyCSprite.flipX = false;
+
+        Cursor.visible = false;
+
+        QuestCompleteSFX.Play();
+
     }
 
     public void DisplayDialogue021(DialogueAsset dialogue) //021

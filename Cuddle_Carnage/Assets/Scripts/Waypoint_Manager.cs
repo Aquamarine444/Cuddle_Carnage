@@ -12,6 +12,9 @@ public class Waypoint_Manager : MonoBehaviour
 
     enum Direction {Up, Down, Left, Right}
 
+    public GameObject PreviousSound;
+    public GameObject NextSound;
+
     private void Awake()
     {
         confiner = FindObjectOfType<CinemachineConfiner2D>();
@@ -41,6 +44,8 @@ public class Waypoint_Manager : MonoBehaviour
         }
 
         player.transform.position = newPosition;
+        PreviousSound.SetActive(false);
+        NextSound.SetActive(true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

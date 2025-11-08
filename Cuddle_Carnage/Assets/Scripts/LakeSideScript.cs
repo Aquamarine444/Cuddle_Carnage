@@ -15,6 +15,8 @@ public class LakeSideScript : MonoBehaviour
 
     public DialogueAsset PlayerRant;
 
+    public AudioSource QuestCompleteSFX;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -49,6 +51,8 @@ public class LakeSideScript : MonoBehaviour
         QuestText.text = "Return to Buddy";
         Time.timeScale = 1.0f;
         BuddyQuestComplete = true;
+        QuestCompleteSFX.Play();
+
         this.gameObject.SetActive(false);
 
     }

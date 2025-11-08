@@ -26,6 +26,8 @@ public class PheobeQuestManager : MonoBehaviour
 
     public Quest quest; //Quest NPC gives
 
+    public AudioSource QuestCompleteSFX;
+
     //General Dialogue
     [Header("Dialogue Asset General: ")]
     public DialogueAsset GeneralDialogue;
@@ -83,6 +85,7 @@ public class PheobeQuestManager : MonoBehaviour
         if (PheobeDialogue.QuestStarted && foundItem != null)
         {
             QuestText.text = "Return Phemur to Pheobe";
+            QuestCompleteSFX.Play();
         }
 
         if (PheobeDialogue.QuestStarted && foundItem != null && Input.GetKeyDown(KeyCode.F) && NPC.PlayerNear)
@@ -99,7 +102,6 @@ public class PheobeQuestManager : MonoBehaviour
             DialoguePanel.SetActive(true);
 
             Inventory.Inventory.Remove(foundItem);
-            //Destroy(Phemur);
 
             PheobeDialogue.QuestStarted = false;
 
@@ -202,6 +204,8 @@ public class PheobeQuestManager : MonoBehaviour
         Info.SetActive(false);
         DialoguePanel.SetActive(false);
         Cursor.visible = false;
+
+        QuestText.text = "Find Phemur in the Graveyard and Return it to Pheobe";
     }
 
     public void DisplayDialogueMid(DialogueAsset dialogue) //Mid

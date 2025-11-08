@@ -18,6 +18,7 @@ public class GameManagerScripts : MonoBehaviour
     public TMP_Text QuestHint;
 
     public TMP_Text QuestText;
+    public GameObject MadamTerra;
     //Add sound
 
     [Header("Sanity System: ")]
@@ -33,10 +34,13 @@ public class GameManagerScripts : MonoBehaviour
     public GameObject Tabby;
     public GameObject BabyC;
     public GameObject Pheobe;
+    public GameObject Sheriff;
+
+    [Header("Sounds: ")]
+    public AudioSource AviaryAccess;
 
     private void Update()
     {
-        QuestText.text = QuestCounter.ToString() + "/5";
         if (BuddyQuest && PandoraQuest && TabbyQuest && BabyCQuest && PheobeQuest)
         {
             AllQuestComplete = true;
@@ -45,14 +49,29 @@ public class GameManagerScripts : MonoBehaviour
         if (AllQuestComplete)
         {
             Debris.SetActive(false);
+            AviaryAccess.Play();
             QuestHint.text = "Head to the Aviary";
         }
 
         if (!Buddy.activeInHierarchy && !Pandora.activeInHierarchy && !Tabby.activeInHierarchy && !BabyC.activeInHierarchy 
-            && !Pheobe.activeInHierarchy)
+            && !Pheobe.activeInHierarchy )
         {
             Debris.SetActive(false);
+            AviaryAccess.Play();
             QuestHint.text = "Head to the Aviary";
+        }
+
+        if (QuestCounter + BadCounter >= 5)
+        {
+            MadamTerra.SetActive(true);
+        }
+        else if (TabbyQuest)
+        {
+            MadamTerra.SetActive(true);
+        }
+        else if (!BabyC.activeInHierarchy && !Buddy.activeInHierarchy && !Sheriff.activeInHierarchy)
+        {
+            MadamTerra.SetActive(true);
         }
     }
 

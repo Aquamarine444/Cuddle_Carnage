@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 11. Player
   m_EditorClassIdentifier: 
   dialogue:
-  - Dialogue: Ok, ok. Calm down, everything is oging to be okay.
+  - Dialogue: Ok, ok. Calm down, everything is going to be okay.
   - Dialogue: Mmmm....
   - Dialogue: Where is this toy now?

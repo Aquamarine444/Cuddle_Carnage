@@ -93,6 +93,8 @@ public class SheriffQuestEnd : MonoBehaviour
 
     public GameObject Sheriff;
 
+    public AudioSource CompleteQuestSFX;
+
     private void Update()
     {
         if (SheriffDialogue.QuestStarted && NPCManager.PlayerNear && !QuestComplete && Input.GetKeyDown(KeyCode.F))
@@ -119,7 +121,7 @@ public class SheriffQuestEnd : MonoBehaviour
 
         if (Sheriff.activeInHierarchy)
         {
-            if (GameManager.PandoraQuest && Input.GetKeyDown(KeyCode.F))
+            if (GameManager.PandoraQuest && Input.GetKeyDown(KeyCode.F) && NPCManager.PlayerNear)
             {
                 Time.timeScale = 0f;
                 DialoguePanel.SetActive(true);
@@ -137,7 +139,7 @@ public class SheriffQuestEnd : MonoBehaviour
         }
         else if (!Sheriff.activeInHierarchy)
         {
-            if (GameManager.PandoraQuest && Input.GetKeyDown(KeyCode.F))
+            if (GameManager.PandoraQuest && Input.GetKeyDown(KeyCode.F) && NPCManager.PlayerNear)
             {
                 Time.timeScale = 0f;
                 DialoguePanel.SetActive(true);
@@ -746,16 +748,21 @@ public class SheriffQuestEnd : MonoBehaviour
 
         Kite.SetActive(false);
 
-        PandoraAvatar.transform.position = new Vector2(-12.98f, -31.36f);
-        PandoraFluff.transform.position = new Vector2(-12.98f, -31.36f);
+        PandoraAvatar.transform.position = new Vector2(-9.84f, -40.86f);
+        PandoraFluff.transform.position = new Vector2(-9.84f, -40.86f);
 
         //Inventory.slotCount += 2;
         InventoryCheck.InventoryCount += 2;
         GameManager.PandoraQuest = true;
+        GameManager.QuestCounter += 1;
         QuestButton.interactable = false;
 
         Inventory.SetInventoryItems(Inventory.GetInventoryItems());
         GameManager.QuestCounter += 1;
+
+        PandoraSkin.sprite = PandoraKite;
+
+        CompleteQuestSFX.Play();
     }
 
 

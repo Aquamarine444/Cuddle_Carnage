@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player Animations:")]
     public Animator Anim;
     public SpriteRenderer SpriteRender;
+    public SpriteRenderer ShadowRenderer;
+    public SpriteRenderer BabyCRenderer;
 
     [Header("Player Hunger: ")]
     public bool TimerStart;
@@ -55,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         GameManager.SanityHigh = true;
         GameManager.SanityLow = false;
 
-        Cursor.visible = false;
+        //Cursor.visible = false;
     }
 
 
@@ -109,16 +111,38 @@ public class PlayerMovement : MonoBehaviour
         if (movementDirection.x > 0.1f)
         {
             SpriteRender.flipX = false;
+            ShadowRenderer.flipX = false;
+            BabyCRenderer.flipX = false;
             Anim.SetBool("SideWalk", true);
         }
         else if (movementDirection.x < -0.1f)
         {
             SpriteRender.flipX = true;
+            ShadowRenderer.flipX = true;
+            BabyCRenderer.flipX = true;
             Anim.SetBool("SideWalk", true);
         }
         else
         {
             Anim.SetBool("SideWalk", false);
+        }
+
+        if (movementDirection.y > 0.1f)
+        {
+            Anim.SetBool("TopWalk", true);
+        }
+        else
+        {
+            Anim.SetBool("TopWalk", false);
+        }
+
+        if (movementDirection.y < -0.1f)
+        {
+            Anim.SetBool("DownWalk", true);
+        }
+        else
+        {
+            Anim.SetBool("DownWalk", false);
         }
 
         if (IsMoving)

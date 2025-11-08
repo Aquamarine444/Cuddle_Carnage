@@ -28,6 +28,8 @@ public class BCEndScript : MonoBehaviour
     public Button QuestButton;
     public bool QuestComplete;
 
+    public AudioSource QuestCompleteSFX;
+
     [Header("Dialogue Assets: ")]
     public DialogueAsset BaronOnyx1Dialogue; //1
     public DialogueAsset Player1Dialogue; //2
@@ -348,6 +350,7 @@ public class BCEndScript : MonoBehaviour
         QuestButton.interactable = false;
         QuestComplete = true;
         Pheobe.SetActive(true);
+        QuestCompleteSFX.Play();
 
     }
 

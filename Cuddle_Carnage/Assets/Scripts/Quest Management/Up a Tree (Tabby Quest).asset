@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca9bbbe4f2caa249b9b28f07e1fde5a, type: 3}
+  m_Name: Up a Tree (Tabby Quest)
+  m_EditorClassIdentifier: 
+  QuestID: 6cf5c079-2fdc-4f6c-8d64-b97e9114e635
+  QuestName: Up a Tree
+  QuestDescription: Return the CreepyDoll to the Abandoned Tree House
+  QuestList:
+  - ObjectiveID: 
+    Description: Return the CreepyDoll to the Abandoned Tree House
+    type: 4
+    RequiredAmount: 1
+    CurrentAmount: 0

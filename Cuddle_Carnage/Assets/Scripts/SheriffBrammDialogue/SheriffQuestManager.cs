@@ -18,6 +18,8 @@ public class SheriffQuestManager : MonoBehaviour
 
     public SheriffQuestEnd QuestEnd;
 
+    public TMP_Text QuestText;
+
     private enum QuestState { NotStarted, InProgress, Completed }
     private QuestState questState = QuestState.NotStarted;
 
@@ -133,6 +135,7 @@ public class SheriffQuestManager : MonoBehaviour
 
         PreQuestItem.SetActive(true);
         DialogueText.SetActive(false);
+        QuestText.text = "Find Pandora in the Forest";
 
         Cursor.visible = false;
     }

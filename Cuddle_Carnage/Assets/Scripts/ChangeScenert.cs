@@ -13,6 +13,9 @@ public class ChangeScenert : MonoBehaviour
     [SerializeField] PolygonCollider2D MapBoundary;
     public CinemachineConfiner2D confiner;
 
+    public GameObject NewSound;
+    public GameObject OldSound;
+
     public void UpdatePosition(GameObject player)
     {
         Vector3 newPosition = player.transform.position;
@@ -20,11 +23,15 @@ public class ChangeScenert : MonoBehaviour
         if (InsideCave)
         {
             newPosition = CaveEntrance;
+            NewSound.SetActive(false);
+            OldSound.SetActive(true);
         }
 
         if (OutsideCave)
         {
             newPosition = CaveExit;
+            NewSound.SetActive(true);
+            OldSound.SetActive(false);
         }
 
         player.transform.position = newPosition;
