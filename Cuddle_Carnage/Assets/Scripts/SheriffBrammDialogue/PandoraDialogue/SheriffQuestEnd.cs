@@ -751,14 +751,12 @@ public class SheriffQuestEnd : MonoBehaviour
         PandoraAvatar.transform.position = new Vector2(-9.84f, -40.86f);
         PandoraFluff.transform.position = new Vector2(-9.84f, -40.86f);
 
-        //Inventory.slotCount += 2;
         InventoryCheck.InventoryCount += 2;
         GameManager.PandoraQuest = true;
         GameManager.QuestCounter += 1;
         QuestButton.interactable = false;
 
         Inventory.SetInventoryItems(Inventory.GetInventoryItems());
-        GameManager.QuestCounter += 1;
 
         PandoraSkin.sprite = PandoraKite;
 

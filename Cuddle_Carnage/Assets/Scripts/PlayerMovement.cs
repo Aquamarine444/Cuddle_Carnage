@@ -157,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
                 else if (Timer <= 0)
                 {
                     HealthSanityBar.fillAmount = HealthSanityBar.fillAmount - 0.17f;
-                    Timer = 45f;
+                    Timer = 40f;
                     TimerStart = false;
                 }
             }
@@ -183,7 +183,7 @@ public class PlayerMovement : MonoBehaviour
         {
             MadTesterScreen.SetActive(true);
 
-            Timer = 60f;
+            Timer = 50f;
 
             GameManager.SanityLow = true;
             GameManager.SanityHigh = false;
@@ -229,7 +229,7 @@ public class PlayerMovement : MonoBehaviour
                     {
                         Collectible.Eaten();
                         HealthSanityBar.fillAmount += 0.5f;
-                        Timer = 15f;
+                        Timer = 40f;
                     }
                 }
 

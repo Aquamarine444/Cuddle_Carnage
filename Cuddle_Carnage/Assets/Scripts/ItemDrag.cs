@@ -85,14 +85,29 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         {
             if (Collectible.Edible)
             {
-                if (PlayerManagement.HealthSanityBar.fillAmount != 1.0f)
+                string foundItem = null;
+                foreach (string item in PlayerManagement.Inventory)
                 {
-                    Collectible.Eaten();
-                    PlayerManagement.HealthSanityBar.fillAmount += 0.5f;
-                    PlayerManagement.Timer = 25f;
+                    if (item == Collectible.ObjectName)
+                    {
+                        foundItem = item;
+                        break;
+                    }
                 }
 
-                PlayerManagement.Inventory.RemoveAt(0);
+                if (PlayerManagement.HealthSanityBar.fillAmount != 1.0f)
+                {
+                    if (foundItem != null)
+                    {
+                        PlayerManagement.Inventory.Remove(foundItem);
+                    }
+
+                    Collectible.Eaten();
+                    PlayerManagement.HealthSanityBar.fillAmount += 0.5f;
+                    PlayerManagement.Timer = 40f;
+                }
+
+                PlayerManagement.Inventory.Remove(foundItem);
                 EdibleInfo.SetActive(false);
 
             }

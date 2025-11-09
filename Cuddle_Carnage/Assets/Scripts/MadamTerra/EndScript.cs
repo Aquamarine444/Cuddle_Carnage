@@ -54,6 +54,7 @@ public class EndScript : MonoBehaviour
 
             GeneralSound.SetActive(false);
             EndSound.SetActive(true);
+            Cursor.visible = true;
         }
     }
 }

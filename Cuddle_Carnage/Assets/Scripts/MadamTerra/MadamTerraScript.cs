@@ -1,6 +1,5 @@
 using System.Collections;
 using TMPro;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class MadamTerraScript : MonoBehaviour
@@ -16,6 +15,7 @@ public class MadamTerraScript : MonoBehaviour
     public TMP_Text QuestText;
 
     public GameObject DialoguePanel;
+
     private void Update()
     {
         if (Trigger.PlayerNear && Input.GetKeyDown(KeyCode.F))
